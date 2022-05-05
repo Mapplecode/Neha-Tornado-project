@@ -2,7 +2,6 @@ import os.path
 import tornado.escape
 import tornado.ioloop
 import tornado.web
-import motor.motor_tornado
 from view import MainHandler,login_handler,\
     register_handler,get_registeration,logout_handler,user_info_handeler
 

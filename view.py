@@ -6,16 +6,19 @@ import tornado.auth
 import tornado.escape
 import pymongo
 from db_connect import mycol
-
+from enc_dec import encrypt_message
 request_handeler = tornado.web.RequestHandler
 
 def add_user(user):
     mydict = user
+    dec_pass = encrypt_message(mydict['password'])
+    mydict['password'] = dec_pass
     x = mycol.insert_one(mydict)
     return 'Done'
 
 def find_user(email):
     user_list = list()
+
     for users in mycol.find({ "email": email}):
         # print(users)
         user_list.append(users)
